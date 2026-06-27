@@ -10,67 +10,98 @@ local camera = workspace.CurrentCamera
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "murgichor"
 ScreenGui.Parent = game.CoreGui
+ScreenGui.ResetOnSpawn = false
 
 local MainFrame = Instance.new("Frame")
 MainFrame.Parent = ScreenGui
-MainFrame.Size = UDim2.new(0, 220, 0, 150)
+MainFrame.Size = UDim2.new(0, 280, 0, 250)
 MainFrame.Position = UDim2.new(0.4, 0, 0.3, 0)
-MainFrame.BackgroundColor3 = Color3.fromRGB(25,25,25)
+MainFrame.BackgroundColor3 = Color3.fromRGB(18, 18, 22)
 MainFrame.BorderSizePixel = 0
 MainFrame.Active = true
 MainFrame.Draggable = true
 
+local MainCorner = Instance.new("UICorner")
+MainCorner.CornerRadius = UDim.new(0, 10)
+MainCorner.Parent = MainFrame
+
+local MainStroke = Instance.new("UIStroke")
+MainStroke.Parent = MainFrame
+MainStroke.Color = Color3.fromRGB(70, 70, 85)
+MainStroke.Thickness = 1
+MainStroke.Transparency = 0.2
+
 local Title = Instance.new("TextLabel")
 Title.Parent = MainFrame
-Title.Size = UDim2.new(1,0,0,35)
-Title.BackgroundColor3 = Color3.fromRGB(40,40,40)
+Title.Size = UDim2.new(1, 0, 0, 40)
+Title.BackgroundColor3 = Color3.fromRGB(28, 28, 34)
 Title.Text = "murgichor"
-Title.TextColor3 = Color3.new(1,1,1)
+Title.TextColor3 = Color3.fromRGB(245, 245, 245)
 Title.TextScaled = true
-Title.Font = Enum.Font.SourceSansBold
+Title.Font = Enum.Font.GothamBold
+
+local TitleCorner = Instance.new("UICorner")
+TitleCorner.CornerRadius = UDim.new(0, 10)
+TitleCorner.Parent = Title
 
 local Toggle = Instance.new("TextButton")
 Toggle.Parent = MainFrame
-Toggle.Size = UDim2.new(0.8,0,0,40)
-Toggle.Position = UDim2.new(0.1,0,0.5,0)
-Toggle.BackgroundColor3 = Color3.fromRGB(0,170,0)
+Toggle.Size = UDim2.new(0.84, 0, 0, 34)
+Toggle.Position = UDim2.new(0.08, 0, 0, 58)
+Toggle.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
 Toggle.Text = "ACTIVE : OFF"
-Toggle.TextColor3 = Color3.new(1,1,1)
+Toggle.TextColor3 = Color3.new(1, 1, 1)
 Toggle.TextScaled = true
-Toggle.Font = Enum.Font.SourceSansBold
+Toggle.Font = Enum.Font.GothamBold
+
+local ToggleCorner = Instance.new("UICorner")
+ToggleCorner.CornerRadius = UDim.new(0, 8)
+ToggleCorner.Parent = Toggle
 
 local TeamCheckButton = Instance.new("TextButton")
 TeamCheckButton.Parent = MainFrame
-TeamCheckButton.Size = UDim2.new(0.8, 0, 0, 20)
-TeamCheckButton.Position = UDim2.new(0.1, 0, 0.08, 0)
+TeamCheckButton.Size = UDim2.new(0.84, 0, 0, 28)
+TeamCheckButton.Position = UDim2.new(0.08, 0, 0, 104)
 TeamCheckButton.BackgroundColor3 = Color3.fromRGB(120, 60, 0)
 TeamCheckButton.Text = "TEAM CHECK : OFF"
 TeamCheckButton.TextColor3 = Color3.new(1, 1, 1)
 TeamCheckButton.TextScaled = true
-TeamCheckButton.Font = Enum.Font.SourceSansBold
+TeamCheckButton.Font = Enum.Font.GothamBold
+
+local TeamCorner = Instance.new("UICorner")
+TeamCorner.CornerRadius = UDim.new(0, 8)
+TeamCorner.Parent = TeamCheckButton
 
 local FOVLabel = Instance.new("TextLabel")
 FOVLabel.Parent = MainFrame
-FOVLabel.Size = UDim2.new(0.8, 0, 0, 18)
-FOVLabel.Position = UDim2.new(0.1, 0, 0.33, 0)
+FOVLabel.Size = UDim2.new(0.84, 0, 0, 18)
+FOVLabel.Position = UDim2.new(0.08, 0, 0, 146)
 FOVLabel.BackgroundTransparency = 1
 FOVLabel.TextColor3 = Color3.new(1, 1, 1)
 FOVLabel.TextScaled = true
-FOVLabel.Font = Enum.Font.SourceSansBold
+FOVLabel.Font = Enum.Font.GothamBold
 FOVLabel.Text = "FOV: 400"
 
 local FOVBar = Instance.new("Frame")
 FOVBar.Parent = MainFrame
-FOVBar.Size = UDim2.new(0.8, 0, 0, 10)
-FOVBar.Position = UDim2.new(0.1, 0, 0.44, 0)
+FOVBar.Size = UDim2.new(0.84, 0, 0, 12)
+FOVBar.Position = UDim2.new(0.08, 0, 0, 170)
 FOVBar.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
 FOVBar.BorderSizePixel = 0
+
+local FOVBarCorner = Instance.new("UICorner")
+FOVBarCorner.CornerRadius = UDim.new(0, 6)
+FOVBarCorner.Parent = FOVBar
 
 local FOVFill = Instance.new("Frame")
 FOVFill.Parent = FOVBar
 FOVFill.Size = UDim2.new(0.5, 0, 1, 0)
 FOVFill.BackgroundColor3 = Color3.fromRGB(255, 170, 0)
 FOVFill.BorderSizePixel = 0
+
+local FOVFillCorner = Instance.new("UICorner")
+FOVFillCorner.CornerRadius = UDim.new(0, 6)
+FOVFillCorner.Parent = FOVFill
 
 local FOVButton = Instance.new("TextButton")
 FOVButton.Parent = FOVBar
@@ -80,26 +111,34 @@ FOVButton.Text = ""
 
 local SliderLabel = Instance.new("TextLabel")
 SliderLabel.Parent = MainFrame
-SliderLabel.Size = UDim2.new(0.8, 0, 0, 18)
-SliderLabel.Position = UDim2.new(0.1, 0, 0.63, 0)
+SliderLabel.Size = UDim2.new(0.84, 0, 0, 18)
+SliderLabel.Position = UDim2.new(0.08, 0, 0, 192)
 SliderLabel.BackgroundTransparency = 1
 SliderLabel.TextColor3 = Color3.new(1, 1, 1)
 SliderLabel.TextScaled = true
-SliderLabel.Font = Enum.Font.SourceSansBold
+SliderLabel.Font = Enum.Font.GothamBold
 SliderLabel.Text = "Aim Distance: 250"
 
 local SliderBar = Instance.new("Frame")
 SliderBar.Parent = MainFrame
-SliderBar.Size = UDim2.new(0.8, 0, 0, 10)
-SliderBar.Position = UDim2.new(0.1, 0, 0.74, 0)
+SliderBar.Size = UDim2.new(0.84, 0, 0, 12)
+SliderBar.Position = UDim2.new(0.08, 0, 0, 216)
 SliderBar.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
 SliderBar.BorderSizePixel = 0
+
+local SliderBarCorner = Instance.new("UICorner")
+SliderBarCorner.CornerRadius = UDim.new(0, 6)
+SliderBarCorner.Parent = SliderBar
 
 local SliderFill = Instance.new("Frame")
 SliderFill.Parent = SliderBar
 SliderFill.Size = UDim2.new(0.5, 0, 1, 0)
 SliderFill.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
 SliderFill.BorderSizePixel = 0
+
+local SliderFillCorner = Instance.new("UICorner")
+SliderFillCorner.CornerRadius = UDim.new(0, 6)
+SliderFillCorner.Parent = SliderFill
 
 local SliderButton = Instance.new("TextButton")
 SliderButton.Parent = SliderBar
@@ -242,8 +281,10 @@ UserInputService.InputEnded:Connect(function(input)
     end
 end)
 
-setAimDistanceFromX(SliderBar.AbsolutePosition.X + SliderBar.AbsoluteSize.X * 0.5)
-setFOVFromX(FOVBar.AbsolutePosition.X + FOVBar.AbsoluteSize.X * 0.5)
+task.defer(function()
+    setAimDistanceFromX(SliderBar.AbsolutePosition.X + SliderBar.AbsoluteSize.X * 0.5)
+    setFOVFromX(FOVBar.AbsolutePosition.X + FOVBar.AbsoluteSize.X * 0.5)
+end)
 
 -- AIMBOT
 RunService.RenderStepped:Connect(function()
